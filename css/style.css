@@ -327,14 +327,14 @@
         bottom: -30px;
         left: 50%;
         transform: translateX(-50%);
-        margin-left: -45px;
+        margin-left: 45px;
     }
 
     .header-carousel .owl-nav .owl-next {
         bottom: -30px;
         left: 50%;
         transform: translateX(-50%);
-        margin-left: 45px;
+        margin-left: -45px;
     }
 }
 /*** Carousel Hero Header End ***/
@@ -765,7 +765,7 @@
     top: 0;
     left: 0;
     border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-    background: rgba(255, 255, 255, 0.9);
+    background: rgb(255, 255, 255);
     z-index: 1;
     animation-name: image-efects;
     animation-duration: 10s;
@@ -925,4 +925,81 @@
   .feature-carousel .owl-nav {
     display: none !important;
   }
+}
+
+
+/* Küçük ekranlar (≤576px) için */
+@media (max-width: 576px) {
+  .d-flex.justify-content-center.justify-content-md-start .btn {
+    /* Yatay padding = 1rem, dikey padding = 0.5rem */
+    padding: 0.5rem 1rem !important;
+    /* Daha küçük font */
+    font-size: 0.9rem !important;
+  }
+}
+
+/* Orta ekranlar (≤768px) için (istenirse) */
+@media (max-width: 768px) {
+  .d-flex.justify-content-center.justify-content-md-start .btn {
+    padding: 0.75rem 1.5rem !important;
+    font-size: 0.95rem !important;
+  }
+}
+
+/* 1) Owl Carousel içindeki her .owl-item’ı flex container yaparak aynı hizada uzatıyoruz */
+.owl-carousel.feature-carousel.owl-theme .owl-item {
+  display: flex !important;
+}
+
+/* 2) Kartın kendisini de dikeyde flex kolonu yapıp eşit paylaştırıyoruz */
+.feature-item {
+  flex: 1;                       /* Tüm kartları eşit esnekliğe sokar */
+  display: center;                 /* İçerik hizalamak için flex */
+  flex-direction: column;        /* Sütun yönünde diz */
+  justify-content: space-between;/* Üst ve alt boşlukları dengeler */
+}
+
+/* 3) İkon ve metin bloklarının taşmaması için gerekirse sabit boşluk verebilirsiniz */
+.feature-item .feature-icon {
+  margin-bottom: 1rem;
+}
+
+/* (İsteğe bağlı) Eğer içerik çok uzunsa taşmayı önlemek için maksimum yükseklik ayarı */
+/* .feature-item { max-height: 380px; overflow: hidden; } */
+
+
+
+.header-carousel-item {
+  position: relative !important;
+  background-color: transparent !important;    /* bg-primary’ı iptal etmek için */
+  background-size: cover !important;
+  background-position: center center !important;
+  background-repeat: no-repeat !important;
+}
+
+/* Her slide için kendi görselini ata */
+.header-carousel-item.slide1 {
+  background-image: url('img/yapi-guclendirme.jpg') !important;
+}
+
+.header-carousel-item.slide2 {
+  background-image: url('img/kentsel-donusum.jpg') !important;
+}
+
+/* (İsteğe bağlı) Gradient overlay ile metni ön plana çıkar */
+.header-carousel-item::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(0,0,0,0.6) 20%,
+    rgba(0,0,0,0.2) 60%,
+    rgba(0,0,0,0.6) 100%
+  ) !important;
+  z-index: 1;
+}
+.header-carousel-item .carousel-caption {
+  position: relative;
+  z-index: 2;
 }
